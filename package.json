@@ -1,0 +1,17 @@
+{
+  "name": "campora-html-template",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "build": "node scripts/build.cjs && node scripts/prerender.cjs",
+    "test": "node tests/audit.cjs"
+  },
+  "devDependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "@playwright/test": "^1.64.1",
+    "bootstrap-icons": "^1.13.2",
+    "prettier": "^3.9.10"
+  }
+}

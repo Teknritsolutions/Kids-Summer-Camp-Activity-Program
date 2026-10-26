@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="title description">
+  <title id="title">Illustrative Campora location map</title>
+  <desc id="description">A fictional editable map showing a sample camp beside a meadow and lake. This is not a real geographic location.</desc>
+  <rect width="1200" height="480" fill="#f3f5f8"/>
+  <path d="M0 70 380 115 630 0M610 480 665 330 1200 210" fill="none" stroke="#e2e6ec" stroke-width="100"/>
+  <path d="M0 70 380 115 630 0M610 480 665 330 1200 210" fill="none" stroke="#fff" stroke-width="64"/>
+  <path d="m0 365 430-10 230-160 540 60" fill="none" stroke="#fff" stroke-width="40"/>
+  <path d="M1040 0c-160 80-210 160-130 215s190 23 290 70V0Z" fill="#8fbed8" opacity=".6"/>
+  <path d="M38 440c-45-110 65-200 200-200s170 100 142 240H38Z" fill="#dfe7db"/>
+  <g fill="#bacbb2"><circle cx="85" cy="296" r="27"/><circle cx="140" cy="272" r="29"/><circle cx="224" cy="293" r="35"/><circle cx="294" cy="319" r="27"/><circle cx="75" cy="386" r="24"/><circle cx="245" cy="404" r="25"/></g>
+  <g transform="translate(620 170)"><circle r="74" fill="#e879651c"/><path d="M0 50c-6-8-43-49-43-76a43 43 0 0 1 86 0C43 1 6 42 0 50Z" fill="#e87965"/><circle cy="-26" r="16" fill="#fff"/></g>
+  <g font-family="Arial,sans-serif" fill="#647084" font-size="18"><text x="84" y="210">Woodland meadow</text><text x="1020" y="130">Sample lake</text><text x="763" y="392">Sample Camp Road</text></g>
+  <rect x="490" y="253" width="260" height="70" rx="12" fill="#223451"/>
+  <text x="620" y="282" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#fff">Campora demo camp</text>
+  <text x="620" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#c6d0df">Fictional location · replace before use</text>
+</svg>

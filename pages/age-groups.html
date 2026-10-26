@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en" data-theme="light" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A place to grow at every age | Campora</title>
+    <meta
+      name="description"
+      content="Explore activities for ages 4–6, 7–9, 10–12, and 13–16."
+    />
+    <meta
+      property="og:title"
+      content="A place to grow at every age | Campora"
+    />
+    <meta
+      property="og:description"
+      content="Explore activities for ages 4–6, 7–9, 10–12, and 13–16."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#223451" />
+    <link
+      rel="icon"
+      href="../assets/images/branding/favicon.svg"
+      type="image/svg+xml"
+    />
+    <link
+      rel="icon"
+      href="../assets/images/branding/favicon-32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="../assets/images/branding/apple-touch-icon.png"
+    />
+    <script src="../assets/js/theme.js"></script>
+    <link rel="stylesheet" href="../assets/vendor/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/heroes.css" />
+    <link rel="stylesheet" href="../assets/css/polish.css" />
+    <link rel="stylesheet" href="../assets/css/access.css" />
+    <script defer src="../assets/vendor/chart.umd.min.js"></script>
+    <script defer src="../assets/vendor/jspdf.umd.min.js"></script>
+    <script defer src="../assets/js/data.js"></script>
+    <script defer src="../assets/js/main.js"></script>
+    <script defer src="../assets/js/charts.js"></script>
+    <script defer src="../assets/js/dashboard.js"></script>
+    <script defer src="../assets/js/interactions.js"></script>
+  </head>
+  <body data-page="age-groups">
+    <div id="app">
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="site-header">
+<div class="site-container header-inner">
+<a class="brand" href="./index.html" aria-label="Campora home">
+<img src="../assets/images/branding/mark.svg" alt="" width="36" height="36">campora<span aria-hidden="true">.</span>
+</a>
+<button class="nav-backdrop" data-action="close-menu" aria-label="Dismiss navigation" tabindex="-1">
+</button>
+<nav class="nav" id="public-nav" aria-label="Main navigation">
+<div class="drawer-heading">
+<h2>Navigation</h2>
+<button class="icon-btn drawer-close" data-action="close-menu" aria-label="Close navigation">
+<i class="bi bi-x-lg" aria-hidden="true">
+</i>
+</button>
+</div>
+<details>
+<summary>Home</summary>
+<div>
+<a href="./index.html">Home Page 1</a>
+<a href="./home-2.html">Home Page 2</a>
+</div>
+</details>
+<a href="./about.html" >About Us</a>
+<a href="./programs.html" >Programs</a>
+<a href="./age-groups.html" class="active" aria-current="page">Age Groups</a>
+<a href="./schedule.html" >Schedule</a>
+<a href="./safety.html" >Safety</a>
+<a href="./pricing.html" >Fees</a>
+<a href="./blog.html" >Blog</a>
+<a href="./contact.html" >Contact Us</a>
+<details>
+<summary>Dashboard</summary>
+<div>
+<a href="./parent/index.html">Parent Dashboard</a>
+<a href="./admin/index.html">Admin Dashboard</a>
+</div>
+</details>
+<div class="drawer-settings">
+<button class="drawer-setting" data-action="theme" aria-label="Change appearance">
+<span>Appearance</span>
+<strong data-theme-label>Dark mode</strong>
+</button>
+<button class="drawer-setting" data-action="rtl">
+<span>Reading direction</span>
+<strong data-direction-label>RTL</strong>
+</button>
+<a class="btn btn-primary" href="./login.html">
+<i class="bi bi-person" aria-hidden="true">
+</i> Parent login</a>
+</div>
+</nav>
+<div class="header-actions">
+<button class="icon-btn" data-action="theme" aria-label="Switch color theme" title="Switch to dark mode">
+<i class="bi bi-moon-stars" aria-hidden="true">
+</i>
+</button>
+<button class="direction-toggle" data-action="rtl" aria-label="Switch to RTL layout" title="Switch to right-to-left layout">
+<i class="bi bi-text-right" aria-hidden="true">
+</i>
+<span data-direction-label>RTL</span>
+</button>
+<a class="btn btn-navy btn-small" href="./login.html">Parent login <i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</a>
+<button class="icon-btn menu-toggle" data-action="menu" aria-controls="public-nav" aria-expanded="false" aria-label="Open navigation">
+<i class="bi bi-list" aria-hidden="true">
+</i>
+</button>
+</div>
+</div>
+</header>
+<main id="main">
+<section class="page-banner image-page-hero">
+<div class="site-container">
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+<a href="./index.html">Home</a>
+<span aria-hidden="true">/</span>
+<span>Room to grow. At every age.</span>
+</nav>
+<div class="image-page-hero__grid">
+<div class="image-page-hero__copy">
+<span class="eyebrow">Age groups</span>
+<h1>Room to grow. At every age.</h1>
+<p>Explore a sample camp experience built around your child’s stage, interests, and independence.</p>
+<div class="image-page-hero__accent" aria-hidden="true">
+<i class="bi bi-sun">
+</i>
+<span>A little adventure. A world of possibility.</span>
+</div>
+</div>
+<figure class="image-page-hero__media">
+<img src="../assets/images/heroes/ages.webp" srcset="../assets/images/heroes/ages-480.webp 480w, ../assets/images/heroes/ages-960.webp 960w, ../assets/images/heroes/ages.webp 1400w" sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 820px) calc(100vw - 48px), 600px" alt="Children of different ages solving an outdoor puzzle together" class="" width="1000" height="700" loading="eager" fetchpriority="high">
+<span class="image-page-hero__caption">
+<i class="bi bi-compass" aria-hidden="true">
+</i> A summer with Campora</span>
+</figure>
+</div>
+</div>
+</section>
+<section class="section section--alt">
+<div class="site-container">
+<div class="split">
+<figure class="split-media">
+<img src="../assets/images/editorial/age-little.webp" srcset="../assets/images/editorial/age-little-480.webp 480w, ../assets/images/editorial/age-little-960.webp 960w, ../assets/images/editorial/age-little.webp 1400w" sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 820px) calc(100vw - 48px), 600px" alt="Little Explorers" class="split-image" width="1000" height="700" loading="lazy" fetchpriority="auto">
+</figure>
+<div>
+<span class="eyebrow">Ages 4–6</span>
+<h2>Little Explorers</h2>
+<p>Gentle beginnings, creative play, and first discoveries.</p>
+<ul class="check-list">
+<li>Playful making and gentle nature walks</li>
+<li>Supportive pacing and age-appropriate challenges</li>
+<li>Time to connect with peers and mentors</li>
+</ul>
+<a class="btn btn-primary" href="./programs.html?age=4-6">Find their programs <span aria-hidden="true">
+<i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="site-container">
+<div class="split">
+<div>
+<span class="eyebrow">Ages 7–9</span>
+<h2>Creative Adventurers</h2>
+<p>New interests, growing friendships, and hands-on fun.</p>
+<ul class="check-list">
+<li>Cooperative games and creative projects</li>
+<li>Supportive pacing and age-appropriate challenges</li>
+<li>Time to connect with peers and mentors</li>
+</ul>
+<a class="btn btn-primary" href="./programs.html?age=7-9">Find their programs <span aria-hidden="true">
+<i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</span>
+</a>
+</div>
+<figure class="split-media">
+<img src="../assets/images/editorial/age-creative.webp" srcset="../assets/images/editorial/age-creative-480.webp 480w, ../assets/images/editorial/age-creative-960.webp 960w, ../assets/images/editorial/age-creative.webp 1400w" sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 820px) calc(100vw - 48px), 600px" alt="Creative Adventurers" class="split-image" width="1000" height="700" loading="lazy" fetchpriority="auto">
+</figure>
+</div>
+</div>
+</section>
+<section class="section section--alt">
+<div class="site-container">
+<div class="split">
+<figure class="split-media">
+<img src="../assets/images/editorial/age-skills.webp" srcset="../assets/images/editorial/age-skills-480.webp 480w, ../assets/images/editorial/age-skills-960.webp 960w, ../assets/images/editorial/age-skills.webp 1400w" sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 820px) calc(100vw - 48px), 600px" alt="Skill Builders" class="split-image" width="1000" height="700" loading="lazy" fetchpriority="auto">
+</figure>
+<div>
+<span class="eyebrow">Ages 10–12</span>
+<h2>Skill Builders</h2>
+<p>Meaningful challenges and room to try something bold.</p>
+<ul class="check-list">
+<li>Hands-on problem solving and skill practice</li>
+<li>Supportive pacing and age-appropriate challenges</li>
+<li>Time to connect with peers and mentors</li>
+</ul>
+<a class="btn btn-primary" href="./programs.html?age=10-12">Find their programs <span aria-hidden="true">
+<i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="site-container">
+<div class="split">
+<div>
+<span class="eyebrow">Ages 13–16</span>
+<h2>Teen Trailblazers</h2>
+<p>Independence, teamwork, and ideas with real purpose.</p>
+<ul class="check-list">
+<li>Independent projects and team leadership</li>
+<li>Supportive pacing and age-appropriate challenges</li>
+<li>Time to connect with peers and mentors</li>
+</ul>
+<a class="btn btn-primary" href="./programs.html?age=13-16">Find their programs <span aria-hidden="true">
+<i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</span>
+</a>
+</div>
+<figure class="split-media">
+<img src="../assets/images/editorial/age-teen.webp" srcset="../assets/images/editorial/age-teen-480.webp 480w, ../assets/images/editorial/age-teen-960.webp 960w, ../assets/images/editorial/age-teen.webp 1400w" sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 820px) calc(100vw - 48px), 600px" alt="Teen Trailblazers" class="split-image" width="1000" height="700" loading="lazy" fetchpriority="auto">
+</figure>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="site-container">
+<header class="section-head">
+<div>
+<span class="eyebrow">A good fit makes all the difference</span>
+<h2>Compare their next steps.</h2>
+</div>
+</header>
+<div class="table-scroll" role="region" aria-label="Age readiness comparison" tabindex="0">
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>A helpful sign</th>
+<th>A good first step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ages 4–6</td>
+<td>Enjoys short activities with a familiar routine</td>
+<td>Try a gentle half-day of creative play.</td>
+</tr>
+<tr>
+<td>Ages 7–9</td>
+<td>Wants to join group games and make new friends</td>
+<td>Explore a mix of art and cooperative sport.</td>
+</tr>
+<tr>
+<td>Ages 10–12</td>
+<td>Likes practicing a skill or solving a challenge</td>
+<td>Choose a focused coding or making project.</td>
+</tr>
+<tr>
+<td>Ages 13–16</td>
+<td>Seeks independence and shared responsibility</td>
+<td>Look for collaborative projects and leadership opportunities.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="site-container">
+<div class="footer-grid">
+<div>
+<a class="brand" href="./index.html">
+<img src="../assets/images/branding/mark.svg" alt="" width="36" height="36">campora.</a>
+<p>A little adventure.<br>A whole summer of possibility.</p>
+<nav class="footer-socials" aria-label="Social media">
+<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram" title="Instagram">
+<i class="bi bi-instagram" aria-hidden="true">
+</i>
+</a>
+<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Facebook" title="Facebook">
+<i class="bi bi-facebook" aria-hidden="true">
+</i>
+</a>
+<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit YouTube" title="YouTube">
+<i class="bi bi-youtube" aria-hidden="true">
+</i>
+</a>
+<a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Pinterest" title="Pinterest">
+<i class="bi bi-pinterest" aria-hidden="true">
+</i>
+</a>
+</nav>
+</div>
+<div>
+<h3>Discover</h3>
+<a href="./about.html">Our story</a>
+<a href="./programs.html">Our programs</a>
+<a href="./schedule.html">A day at camp</a>
+<a href="./safety.html">Safety & care</a>
+</div>
+<div>
+<h3>For families</h3>
+<a href="./pricing.html">Fees & packages</a>
+<a href="./blog.html">Camp journal</a>
+<a href="./parent/index.html">Parent dashboard</a>
+<a href="./contact.html">Get in touch</a>
+</div>
+<div>
+<h3>Let’s stay curious</h3>
+<p>Occasional inspiration for your next adventure.</p>
+<form data-form="subscribe" class="form-grid">
+<label>Email address<input type="email" name="email" placeholder="you@example.com" required>
+</label>
+<button class="btn btn-secondary btn-small">Join the demo list <i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</button>
+<div class="form-feedback" role="status">
+</div>
+</form>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Campora. All rights reserved.</span>
+<span class="footer-signoff">Made for a summer of discovery.</span>
+</div>
+</div>
+</footer>
+</div>
+    <noscript
+      ><p class="site-container">
+        Enable JavaScript for filters, dashboards, and local demo forms.
+      </p></noscript
+    >
+  </body>
+</html>

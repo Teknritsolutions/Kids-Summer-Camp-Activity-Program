@@ -1,0 +1,22 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+(async()=>{
+ const browser=await chromium.launch();
+ const page=await browser.newPage({viewport:{width:1440,height:1000}});
+ await page.goto('http://127.0.0.1:4173/pages/about.html');
+ assert.equal(await page.locator('.team-profile__portrait').count(),3);
+ await page.locator('.team-profile__portrait').evaluateAll(nodes=>Promise.all(nodes.map(n=>{n.loading='eager';return n.decode();})));
+ await page.locator('.grid').filter({has:page.locator('.team-profile')}).screenshot({path:'tests/screenshots/team-portraits.png'});
+ assert.equal(await page.locator('.footer-socials a').count(),4);
+ await page.goto('http://127.0.0.1:4173/pages/schedule.html');
+ const bounds=await page.locator('.timeline--four').evaluate(n=>({right:n.getBoundingClientRect().right,last:n.lastElementChild.getBoundingClientRect().right}));
+ assert(Math.abs(bounds.right-bounds.last)<2);
+ await page.locator('.timeline--four').screenshot({path:'tests/screenshots/schedule-four-columns.png'});
+ await page.goto('http://127.0.0.1:4173/pages/safety.html');
+ assert.equal(await page.locator('.care-conversation details').count(),0);
+ assert.equal(await page.locator('.care-conversation__topic').count(),3);
+ await page.locator('.care-conversation').screenshot({path:'tests/screenshots/care-conversation.png'});
+ await page.setViewportSize({width:390,height:1000});
+ await page.locator('.care-conversation').screenshot({path:'tests/screenshots/care-conversation-mobile.png'});
+ await browser.close();console.log('Team portraits, social icons, four-column alignment and new care section passed.');
+})().catch(e=>{console.error(e);process.exit(1)});

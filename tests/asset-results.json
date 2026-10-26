@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-21T14:52:06.683Z",
+  "routes": 28,
+  "editorialImages": 58,
+  "links": 60,
+  "duplicates": [],
+  "broken": [],
+  "badLinks": [],
+  "staticPublicContent": "passed",
+  "titles": [
+    {
+      "route": "404.html",
+      "title": "A little off the beaten path | Campora"
+    },
+    {
+      "route": "about.html",
+      "title": "Our story | Campora"
+    },
+    {
+      "route": "age-groups.html",
+      "title": "A place to grow at every age | Campora"
+    },
+    {
+      "route": "blog.html",
+      "title": "The Campora journal | Campora"
+    },
+    {
+      "route": "coming-soon.html",
+      "title": "The next adventure is coming | Campora"
+    },
+    {
+      "route": "contact.html",
+      "title": "Let’s talk about their summer | Campora"
+    },
+    {
+      "route": "forgot-password.html",
+      "title": "Find your way back | Campora"
+    },
+    {
+      "route": "home-2.html",
+      "title": "More moments worth remembering. | Campora"
+    },
+    {
+      "route": "index.html",
+      "title": "A little adventure. A whole lot of growing up. | Campora"
+    },
+    {
+      "route": "login.html",
+      "title": "Welcome back | Campora"
+    },
+    {
+      "route": "pricing.html",
+      "title": "Fees & packages | Campora"
+    },
+    {
+      "route": "programs.html",
+      "title": "Find their kind of adventure | Campora"
+    },
+    {
+      "route": "register.html",
+      "title": "Your summer starts here | Campora"
+    },
+    {
+      "route": "safety.html",
+      "title": "Safety & care | Campora"
+    },
+    {
+      "route": "schedule.html",
+      "title": "A week full of possibility | Campora"
+    },
+    {
+      "route": "program-details.html?id=sports",
+      "title": "All-Star Sports Club | Campora"
+    },
+    {
+      "route": "program-details.html?id=arts",
+      "title": "Little Makers Studio | Campora"
+    },
+    {
+      "route": "program-details.html?id=coding",
+      "title": "Robots & Bright Ideas | Campora"
+    },
+    {
+      "route": "program-details.html?id=swimming",
+      "title": "Splash & Confidence | Campora"
+    },
+    {
+      "route": "program-details.html?id=nature",
+      "title": "Wild Wonder Explorers | Campora"
+    },
+    {
+      "route": "blog-details.html?id=first-day",
+      "title": "Little steps to a wonderful first day | Campora"
+    },
+    {
+      "route": "blog-details.html?id=creative",
+      "title": "Make room for a little creative mess | Campora"
+    },
+    {
+      "route": "blog-details.html?id=outdoors",
+      "title": "The big lessons in small outdoor discoveries | Campora"
+    },
+    {
+      "route": "blog-details.html?id=water",
+      "title": "A thoughtful approach to water confidence | Campora"
+    },
+    {
+      "route": "blog-details.html?id=friendship",
+      "title": "Finding your people through play | Campora"
+    },
+    {
+      "route": "blog-details.html?id=summer",
+      "title": "A new season of possibilities | Campora"
+    },
+    {
+      "route": "parent/programs.html",
+      "title": "Parent programs | Campora"
+    },
+    {
+      "route": "../documentation/index.html",
+      "title": "Documentation | Campora"
+    }
+  ]
+}

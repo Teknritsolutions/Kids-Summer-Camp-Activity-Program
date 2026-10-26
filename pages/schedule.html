@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en" data-theme="light" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A week full of possibility | Campora</title>
+    <meta
+      name="description"
+      content="Explore a filterable sample weekly summer camp timetable."
+    />
+    <meta property="og:title" content="A week full of possibility | Campora" />
+    <meta
+      property="og:description"
+      content="Explore a filterable sample weekly summer camp timetable."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#223451" />
+    <link
+      rel="icon"
+      href="../assets/images/branding/favicon.svg"
+      type="image/svg+xml"
+    />
+    <link
+      rel="icon"
+      href="../assets/images/branding/favicon-32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="../assets/images/branding/apple-touch-icon.png"
+    />
+    <script src="../assets/js/theme.js"></script>
+    <link rel="stylesheet" href="../assets/vendor/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/heroes.css" />
+    <link rel="stylesheet" href="../assets/css/polish.css" />
+    <link rel="stylesheet" href="../assets/css/access.css" />
+    <script defer src="../assets/vendor/chart.umd.min.js"></script>
+    <script defer src="../assets/vendor/jspdf.umd.min.js"></script>
+    <script defer src="../assets/js/data.js"></script>
+    <script defer src="../assets/js/main.js"></script>
+    <script defer src="../assets/js/charts.js"></script>
+    <script defer src="../assets/js/dashboard.js"></script>
+    <script defer src="../assets/js/interactions.js"></script>
+  </head>
+  <body data-page="schedule">
+    <div id="app">
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="site-header">
+<div class="site-container header-inner">
+<a class="brand" href="./index.html" aria-label="Campora home">
+<img src="../assets/images/branding/mark.svg" alt="" width="36" height="36">campora<span aria-hidden="true">.</span>
+</a>
+<button class="nav-backdrop" data-action="close-menu" aria-label="Dismiss navigation" tabindex="-1">
+</button>
+<nav class="nav" id="public-nav" aria-label="Main navigation">
+<div class="drawer-heading">
+<h2>Navigation</h2>
+<button class="icon-btn drawer-close" data-action="close-menu" aria-label="Close navigation">
+<i class="bi bi-x-lg" aria-hidden="true">
+</i>
+</button>
+</div>
+<details>
+<summary>Home</summary>
+<div>
+<a href="./index.html">Home Page 1</a>
+<a href="./home-2.html">Home Page 2</a>
+</div>
+</details>
+<a href="./about.html" >About Us</a>
+<a href="./programs.html" >Programs</a>
+<a href="./age-groups.html" >Age Groups</a>
+<a href="./schedule.html" class="active" aria-current="page">Schedule</a>
+<a href="./safety.html" >Safety</a>
+<a href="./pricing.html" >Fees</a>
+<a href="./blog.html" >Blog</a>
+<a href="./contact.html" >Contact Us</a>
+<details>
+<summary>Dashboard</summary>
+<div>
+<a href="./parent/index.html">Parent Dashboard</a>
+<a href="./admin/index.html">Admin Dashboard</a>
+</div>
+</details>
+<div class="drawer-settings">
+<button class="drawer-setting" data-action="theme" aria-label="Change appearance">
+<span>Appearance</span>
+<strong data-theme-label>Dark mode</strong>
+</button>
+<button class="drawer-setting" data-action="rtl">
+<span>Reading direction</span>
+<strong data-direction-label>RTL</strong>
+</button>
+<a class="btn btn-primary" href="./login.html">
+<i class="bi bi-person" aria-hidden="true">
+</i> Parent login</a>
+</div>
+</nav>
+<div class="header-actions">
+<button class="icon-btn" data-action="theme" aria-label="Switch color theme" title="Switch to dark mode">
+<i class="bi bi-moon-stars" aria-hidden="true">
+</i>
+</button>
+<button class="direction-toggle" data-action="rtl" aria-label="Switch to RTL layout" title="Switch to right-to-left layout">
+<i class="bi bi-text-right" aria-hidden="true">
+</i>
+<span data-direction-label>RTL</span>
+</button>
+<a class="btn btn-navy btn-small" href="./login.html">Parent login <i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</a>
+<button class="icon-btn menu-toggle" data-action="menu" aria-controls="public-nav" aria-expanded="false" aria-label="Open navigation">
+<i class="bi bi-list" aria-hidden="true">
+</i>
+</button>
+</div>
+</div>
+</header>
+<main id="main">
+<section class="page-banner image-page-hero">
+<div class="site-container">
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+<a href="./index.html">Home</a>
+<span aria-hidden="true">/</span>
+<span>A week full of possibility.</span>
+</nav>
+<div class="image-page-hero__grid">
+<div class="image-page-hero__copy">
+<span class="eyebrow">The camp rhythm</span>
+<h1>A week full of possibility.</h1>
+<p>See how a sample camp week balances creative discovery, active play, and well-earned downtime.</p>
+<div class="image-page-hero__accent" aria-hidden="true">
+<i class="bi bi-sun">
+</i>
+<span>A little adventure. A world of possibility.</span>
+</div>
+</div>
+<figure class="image-page-hero__media">
+<img src="../assets/images/heroes/schedule.webp" srcset="../assets/images/heroes/schedule-480.webp 480w, ../assets/images/heroes/schedule-960.webp 960w, ../assets/images/heroes/schedule.webp 1400w" sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 820px) calc(100vw - 48px), 600px" alt="A counselor welcoming children for a new camp day" class="" width="1000" height="700" loading="eager" fetchpriority="high">
+<span class="image-page-hero__caption">
+<i class="bi bi-compass" aria-hidden="true">
+</i> A summer with Campora</span>
+</figure>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="site-container">
+<header class="section-head">
+<div>
+<span class="eyebrow">The week ahead</span>
+<h2>Five days. Fresh discoveries.</h2>
+</div>
+</header>
+<div class="content-panel">
+<p>Our illustrative summer sessions begin June 7, 14, and 21, 2027. Select an activity and age group below to explore a sample weekday timetable.</p>
+</div>
+</div>
+</section>
+<section class="section section--alt">
+<div class="site-container">
+<div id="schedule-app">
+</div>
+</div>
+</section>
+<section class="section">
+<div class="site-container">
+<header class="section-head">
+<div>
+<span class="eyebrow">Make the schedule yours</span>
+<h2>Find a rhythm that fits.</h2>
+</div>
+</header>
+<div class="content-panel">
+<p>Use the activity and age controls above to narrow the timetable. Half-day programs finish at noon; full-day programs finish at 4 PM. Program session dates can be selected during enrollment.</p>
+<a class="btn btn-secondary" href="./programs.html">Compare program options <span aria-hidden="true">
+<i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</span>
+</a>
+</div>
+</div>
+</section>
+<section class="section section--alt">
+<div class="site-container">
+<header class="section-head">
+<div>
+<span class="eyebrow">A smoother camp day</span>
+<h2>Your arrival-to-pickup guide.</h2>
+</div>
+</header>
+<div class="timeline timeline--four">
+<div class="timeline-item">
+<time>Before arrival</time>
+<h3>Check the day’s plan</h3>
+<p>Confirm the session time and pack labeled belongings the evening before.</p>
+</div>
+<div class="timeline-item">
+<time>At check-in</time>
+<h3>Settle into the group</h3>
+<p>Share any updates with the staff lead and confirm the pickup arrangement.</p>
+</div>
+<div class="timeline-item">
+<time>During the day</time>
+<h3>Leave room for breaks</h3>
+<p>Activity blocks include time to pause, drink water, and reconnect with friends.</p>
+</div>
+<div class="timeline-item">
+<time>At pickup</time>
+<h3>Bring the story home</h3>
+<p>Collect projects, check belongings, and ask your child about one discovery.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="site-container">
+<header class="section-head">
+<div>
+<span class="eyebrow">Put a little summer on the calendar</span>
+<h2>Important sample dates.</h2>
+</div>
+</header>
+<div class="grid grid-3">
+<article class="card age-card">
+<span class="eyebrow">Week starting</span>
+<h3>Jun 7, 2027</h3>
+<p>Monday–Friday · Choose an available weekly session.</p>
+<a class="btn btn-secondary" href="./programs.html?date=2027-06-07">See availability <span aria-hidden="true">
+<i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</span>
+</a>
+</article>
+<article class="card age-card">
+<span class="eyebrow">Week starting</span>
+<h3>Jun 14, 2027</h3>
+<p>Monday–Friday · Choose an available weekly session.</p>
+<a class="btn btn-secondary" href="./programs.html?date=2027-06-14">See availability <span aria-hidden="true">
+<i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</span>
+</a>
+</article>
+<article class="card age-card">
+<span class="eyebrow">Week starting</span>
+<h3>Jun 21, 2027</h3>
+<p>Monday–Friday · Choose an available weekly session.</p>
+<a class="btn btn-secondary" href="./programs.html?date=2027-06-21">See availability <span aria-hidden="true">
+<i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</span>
+</a>
+</article>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="site-container">
+<div class="footer-grid">
+<div>
+<a class="brand" href="./index.html">
+<img src="../assets/images/branding/mark.svg" alt="" width="36" height="36">campora.</a>
+<p>A little adventure.<br>A whole summer of possibility.</p>
+<nav class="footer-socials" aria-label="Social media">
+<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram" title="Instagram">
+<i class="bi bi-instagram" aria-hidden="true">
+</i>
+</a>
+<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Facebook" title="Facebook">
+<i class="bi bi-facebook" aria-hidden="true">
+</i>
+</a>
+<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit YouTube" title="YouTube">
+<i class="bi bi-youtube" aria-hidden="true">
+</i>
+</a>
+<a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Pinterest" title="Pinterest">
+<i class="bi bi-pinterest" aria-hidden="true">
+</i>
+</a>
+</nav>
+</div>
+<div>
+<h3>Discover</h3>
+<a href="./about.html">Our story</a>
+<a href="./programs.html">Our programs</a>
+<a href="./schedule.html">A day at camp</a>
+<a href="./safety.html">Safety & care</a>
+</div>
+<div>
+<h3>For families</h3>
+<a href="./pricing.html">Fees & packages</a>
+<a href="./blog.html">Camp journal</a>
+<a href="./parent/index.html">Parent dashboard</a>
+<a href="./contact.html">Get in touch</a>
+</div>
+<div>
+<h3>Let’s stay curious</h3>
+<p>Occasional inspiration for your next adventure.</p>
+<form data-form="subscribe" class="form-grid">
+<label>Email address<input type="email" name="email" placeholder="you@example.com" required>
+</label>
+<button class="btn btn-secondary btn-small">Join the demo list <i class='bi bi-arrow-right' aria-hidden='true'>
+</i>
+</button>
+<div class="form-feedback" role="status">
+</div>
+</form>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Campora. All rights reserved.</span>
+<span class="footer-signoff">Made for a summer of discovery.</span>
+</div>
+</div>
+</footer>
+</div>
+    <noscript
+      ><p class="site-container">
+        Enable JavaScript for filters, dashboards, and local demo forms.
+      </p></noscript
+    >
+  </body>
+</html>
