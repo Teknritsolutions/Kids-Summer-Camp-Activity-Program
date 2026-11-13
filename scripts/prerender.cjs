@@ -3,7 +3,7 @@ const fs = require("node:fs");
 const vm = require("node:vm");
 const publicFiles = fs
   .readdirSync("pages")
-  .filter((file) => file.endsWith(".html"));
+  .filter((file) => file.endsWith(".html") && (!process.argv[2] || file === process.argv[2]));
 for (const file of publicFiles) {
   const page = file.replace(".html", "");
   let markup = "";
@@ -45,6 +45,7 @@ for (const file of publicFiles) {
       sandbox.Campora.state.programs
         .map((p) => sandbox.Campora.programCard(p))
         .join("") +
+      sandbox.Campora.activityGuides() +
       end,
   );
   markup = markup.replace(

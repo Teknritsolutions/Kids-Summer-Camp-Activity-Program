@@ -72,7 +72,7 @@ const assert = require("node:assert/strict");
   assert.equal(await staticPage.locator("main>section").count(), 10);
   assert.equal(await staticPage.locator("h1").count(), 1);
   await staticPage.goto(base + "programs.html");
-  assert.equal(await staticPage.locator(".program-card").count(), 5);
+  assert.equal(await staticPage.locator(".program-card").count(), 11);
   const result = {
     date: new Date().toISOString(),
     routes: routes.length,

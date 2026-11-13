@@ -19,7 +19,7 @@
       new URLSearchParams(location.search).get("id") ||
       (page === "program-details" ? "arts" : "first-day");
     if (name.startsWith("catalog/"))
-      return name.replace("catalog/", "programs/");
+      return name.replace("catalog/", nested ? "editorial/parent-" : "programs/");
     if (
       page === "program-details" &&
       name.startsWith("programs/") &&
@@ -63,6 +63,8 @@
         "home-1/camp-hero.webp": ["editorial/auth-recovery.webp"],
       },
     };
+    if (nested && name === "programs/arts.webp") return "editorial/auth-login.webp";
+    if (nested && name.startsWith("programs/")) return name.replace("programs/", "editorial/parent-");
     const list = maps[page]?.[name];
     if (!list) return name;
     const count = imageCounts[name] || 0;
@@ -190,6 +192,14 @@
   const programCard = (p, enroll = true) =>
     `<article class="card program-card">${image(programImage(p), p.name + " — illustrative supervised camp activity", "card-image")}<div class="card-body"><span class="badge">${E(p.category)} · Ages ${p.ageMin}–${p.ageMax}</span><h3>${E(p.name)}</h3><p>${E(p.description)}</p><div class="program-meta"><span><i class='bi bi-clock' aria-hidden='true'></i> ${E(p.duration)}</span><span>${C.state.sessions.filter((s) => s.programId === p.id).reduce((n, s) => n + Math.max(0, C.available(s)), 0)} demo seats</span></div><div class="program-price">${C.money(p.price)} <small>/ week · demo</small></div><div class="actions">${btn("Details", "program-details.html?id=" + encodeURIComponent(p.id), "secondary")}${enroll ? `<a href="${link("parent/programs.html?enroll=" + encodeURIComponent(p.id))}" class="btn btn-primary">Enroll <i class='bi bi-arrow-right' aria-hidden='true'></i></a>` : ""}</div></div></article>`;
   C.programCard = programCard;
+  C.activityGuides = () => [
+    ["sports", "Move, play, and work together", "Team games, ball skills, and friendly challenges help children build coordination, practice fair play, and cheer each other on."],
+    ["arts", "Make room for imagination", "Painting, collage, and hands-on craft projects invite campers to experiment with color, explore materials, and share their own ideas."],
+    ["coding", "Turn curiosity into a creation", "Playful coding tasks and robotics challenges introduce sequencing, problem solving, and the fun of testing an idea with a teammate."],
+    ["nature", "Discover beyond the classroom", "Nature walks, pond discoveries, and outdoor observation encourage children to ask questions, notice wildlife, and explore the world around them."],
+    ["swimming", "Build confidence in the water", "Supervised pool games, floating practice, and gentle swimming drills help children develop water confidence, coordination, and new skills at their own pace."],
+    ["summer", "Make every summer day count", "Parachute games, outdoor challenges, and shared camp activities bring children together to make friends, try something new, and celebrate small achievements."],
+  ].map(([id, title, copy]) => `<article class="card program-card activity-guide">${image("fresh/guide-" + id + ".webp", title, "card-image")}<div class="card-body"><span class="badge">Activity guide</span><h3>${title}</h3><p>${copy}</p><div class="actions">${btn(id === "summer" ? "Explore summer activities" : "Explore " + id, id === "summer" ? "programs.html#program-filters" : "program-details.html?id=" + id, "secondary")}</div></div></article>`).join("");
   const programs = (limit = 3) =>
     `<div class="grid grid-3">${C.state.programs
       .slice(0, limit)
@@ -374,7 +384,7 @@
     `<article class="card journal-card" id="story-${p.id}">${image("editorial/blog-" + p.id + ".webp", p.title, "card-image")}<div class="card-body"><span class="badge">${p.category}</span><h3>${p.title}</h3><p>${p.intro}</p>${page === "blog" ? `<details class="journal-story"><summary class="text-link">Read the story</summary>${p.sections.map(([heading, copy]) => `<h4>${E(heading)}</h4><p>${E(copy)}</p>`).join("")}</details>` : `<a class="text-link" href="${link("blog.html#story-" + p.id)}">Read the story</a>`}</div></article>`;
   C.postCard = postCard;
   C.appearanceControls = () =>
-    `<button class="icon-btn" data-action="theme" aria-label="Switch color theme" title="Switch to dark mode"><i class="bi bi-moon-stars" aria-hidden="true"></i></button><button class="direction-toggle" data-action="rtl" aria-label="Switch to RTL layout" title="Switch to right-to-left layout"><i class="bi bi-text-right" aria-hidden="true"></i><span data-direction-label>RTL</span></button>`;
+    `<button class="icon-btn" data-action="theme" aria-label="Switch color theme" title="Switch to dark mode"><i class="bi bi-moon-stars" aria-hidden="true"></i></button><button class="direction-toggle" data-action="rtl" aria-label="Switch to RTL layout" title="Switch to right-to-left layout"><span data-direction-label>RTL</span></button>`;
   C.publicHeader = () => {
     const rememberedRole =
       sessionStorage.getItem("campora-role") ||
@@ -640,6 +650,9 @@
     ],
   };
   const contextualFaq = () => faq(pageQuestions[page] || commonFaq);
+  const questionsSection = (eyebrow, title, description, action, url) => section(
+    `<div class="questions-layout"><div class="questions-intro"><span class="eyebrow">${eyebrow}</span><h2>${title}</h2><p>${description}</p>${btn(action, url)}</div><div class="questions-list">${contextualFaq()}</div></div>`
+  );
   C.renderPublic = () => {
     switch (page) {
       case "index":
@@ -670,29 +683,33 @@
           section(
             `<div class="grid grid-4">${[
               [
-                "<i class='bi bi-palette' aria-hidden='true'></i>",
+                "fresh/intro-creative.webp",
+                "Children exploring arts and crafts at camp",
                 "Create something wonderful",
                 "Color outside the lines and let imagination take the lead.",
               ],
               [
-                "<i class='bi bi-compass' aria-hidden='true'></i>",
+                "fresh/intro-nature.webp",
+                "Campers watching birds with binoculars in a meadow",
                 "Find their wild side",
                 "Fresh air, open spaces, and a new discovery around every corner.",
               ],
               [
-                "<i class='bi bi-person-check' aria-hidden='true'></i>",
+                "fresh/intro-mentor.webp",
+                "A camp mentor helping a child learn to tie a knot",
                 "Learn with good people",
                 "Warm, encouraging mentors who make room for every child.",
               ],
               [
-                "<i class='bi bi-shield-check' aria-hidden='true'></i>",
+                "fresh/intro-welcome.webp",
+                "A child and parent being welcomed at the camp entrance",
                 "Feel right at home",
                 "Thoughtful routines and a welcoming place to belong.",
               ],
             ]
               .map(
-                ([icon, title, text]) =>
-                  `<article class="highlight"><span class="feature-icon" aria-hidden="true">${icon}</span><h3>${title}</h3><p>${text}</p></article>`,
+                ([photo, alt, title, text]) =>
+                  `<article class="highlight highlight--photo">${image(photo, alt, "highlight__image")}<div class="highlight__body"><h3>${title}</h3><p>${text}</p></div></article>`,
               )
               .join("")}</div>`,
             true,
@@ -766,7 +783,7 @@
         );
       case "home-2":
         return (
-          `<section class="section editorial-hero scenic-hero"><div class="site-container scenic-hero__stage"><div class="scenic-hero__background is-active" data-hero-scene="0">${image("home-1/camp-hero.webp", "Children hiking with their counselor beside a mountain lake", "", true)}</div><div class="scenic-hero__background" data-hero-scene="1" aria-hidden="true">${image("heroes/trail.webp", "A sunny woodland path leading to a welcoming camp cabin")}</div><div class="scenic-hero__copy"><span class="eyebrow">Out there is where it begins</span><h1>More muddy shoes.<br>More <em>“I did it!”</em> moments.</h1><p>A summer for trying, making, finding, and becoming. Let’s see where their curiosity takes them.</p><div class="actions">${btn("Make this summer theirs", "programs.html")}</div></div><div class="scenic-hero__controls" aria-label="Hero photographs"><button class="scenic-hero__dot" data-action="hero-scene" data-id="0" aria-label="Show lakeside hiking photo" aria-pressed="true">01</button><button class="scenic-hero__dot" data-action="hero-scene" data-id="1" aria-label="Show woodland camp photo" aria-pressed="false">02</button></div></div></section>` +
+          `<section class="section editorial-hero scenic-hero"><div class="site-container scenic-hero__stage"><div class="scenic-hero__background is-active" data-hero-scene="0">${image("home-1/camp-hero.webp", "Children hiking with their counselor beside a mountain lake", "", true)}</div><div class="scenic-hero__background" data-hero-scene="1" aria-hidden="true">${image("fresh/home2-path.webp", "A wooden footbridge over a woodland creek")}</div><div class="scenic-hero__copy"><span class="eyebrow">Out there is where it begins</span><h1>More muddy shoes.<br>More <em>“I did it!”</em> moments.</h1><p>A summer for trying, making, finding, and becoming. Let’s see where their curiosity takes them.</p><div class="actions">${btn("Make this summer theirs", "programs.html")}</div></div><div class="scenic-hero__controls" aria-label="Hero photographs"><button class="scenic-hero__dot" data-action="hero-scene" data-id="0" aria-label="Show lakeside hiking photo" aria-pressed="true">01</button><button class="scenic-hero__dot" data-action="hero-scene" data-id="1" aria-label="Show woodland camp photo" aria-pressed="false">02</button></div></div></section>` +
           section(
             story(
               "Hello, summer",
@@ -781,7 +798,7 @@
               "Follow their curiosity",
               "Five paths. Endless possibilities.",
             ) +
-              `<div class="grid grid-3">${C.state.programs.map((p) => `<a class="card age-card scenic-activity" href="programs.html?category=${p.category}">${image("catalog/" + p.image, p.name + " camp activity", "scenic-activity__photo")}<div class="scenic-activity__copy"><span class="eyebrow">${p.category}</span><h3>${p.name}</h3><p>${p.outcomes[0]}</p><span class="text-link">Discover this activity</span></div></a>`).join("")}<a class="card age-card scenic-activity" href="programs.html">${image("heroes/programs.webp", "Children discovering creative art and science activities", "scenic-activity__photo")}<div class="scenic-activity__copy"><span class="eyebrow">Explore & discover</span><h3>Find Their Next Favorite</h3><p>A little making, a little moving. Explore every activity and find their spark.</p><span class="text-link">Explore all programs</span></div></a></div>`,
+              `<div class="grid grid-3">${C.state.programs.map((p) => `<a class="card age-card scenic-activity" href="programs.html?category=${p.category}">${image("fresh/home2-" + p.id + ".webp", p.name + " camp activity", "scenic-activity__photo")}<div class="scenic-activity__copy"><span class="eyebrow">${p.category}</span><h3>${p.name}</h3><p>${p.outcomes[0]}</p><span class="text-link">Discover this activity</span></div></a>`).join("")}<a class="card age-card scenic-activity" href="programs.html">${image("fresh/home2-discover.webp", "Children discovering creative art and science activities", "scenic-activity__photo")}<div class="scenic-activity__copy"><span class="eyebrow">Explore & discover</span><h3>Find Their Next Favorite</h3><p>A little making, a little moving. Explore every activity and find their spark.</p><span class="text-link">Explore all programs</span></div></a></div>`,
             true,
           ) +
           section(
@@ -830,11 +847,11 @@
               "Meet a few friendly faces.",
               "Meet the activity roles that help turn curiosity into a shared project.",
             ) +
-              `<div class="grid grid-3">${C.state.programs
+              `<figure class="camp-team-photo">${image("fresh/home2-team.webp", "Three friendly camp counselors outside an activity lodge")}</figure><div class="grid grid-3">${C.state.programs
                 .slice(0, 3)
                 .map(
                   (p, index) =>
-                    `<article class="card age-card">${image("editorial/mentor-" + index + ".webp", p.mentor + " — fictional mentor portrait", "mentor-portrait")}<h3 class="mt-4">${p.mentor}</h3><span class="badge">${p.category} mentor · Demo</span><p class="mt-3">Encourages thoughtful exploration through ${p.category.toLowerCase()} activities. Makes space for questions, shared ideas, and progress at each child’s pace.</p></article>`,
+                    `<article class="card age-card"><h3 class="mt-4">${p.mentor}</h3><span class="badge">${p.category} mentor · Demo</span><p class="mt-3">Encourages thoughtful exploration through ${p.category.toLowerCase()} activities. Makes space for questions, shared ideas, and progress at each child’s pace.</p></article>`,
                 )
                 .join("")}</div>`,
           ) +
@@ -977,14 +994,7 @@
               true,
             ),
           ) +
-          section(
-            head(
-              "A little more clarity",
-              "Good questions. Thoughtful answers.",
-            ) +
-              contextualFaq() +
-              `<div class="actions mt-4">${btn("Start a demo enrollment", "parent/programs.html")}</div>`,
-          )
+          questionsSection("A little more clarity", "Good questions. Thoughtful answers.", "Compare activities, explore their interests, and find a good fit for your family.", "Explore enrollment", "parent/programs.html")
         );
       case "program-details": {
         const p = C.state.programs.find(
@@ -1073,13 +1083,10 @@
           ) +
           section(
             head("The week ahead", "Five days. Fresh discoveries.") +
-              `<p>Our illustrative summer sessions begin June 7, 14, and 21, 2027. Select an activity and age group below to explore a sample weekday timetable.</p>`,
+              `<p>Our illustrative summer sessions begin June 7, 14, and 21, 2027. Select an activity and age group below to explore a sample weekday timetable.</p><div class="schedule-moments grid grid-3">${[["arrival", "A welcoming start", "Settle in, meet friends, and get ready for the day.", "Children arriving at camp with their counselor"], ["discovery", "Time to create", "Explore new ideas through hands-on projects.", "Children building a birdhouse with a camp mentor"], ["play", "Room to move", "Head outdoors for active games and shared discoveries.", "Children and a coach playing frisbee at camp"]].map(([photo, title, copy, alt]) => `<article class="card">${image("fresh/schedule-" + photo + ".webp", alt, "card-image")}<div class="card-body"><h3>${title}</h3><p>${copy}</p></div></article>`).join("")}</div>`,
           ) +
           section(`<div id="schedule-app"></div>`, true) +
-          section(
-            head("Make the schedule yours", "Find a rhythm that fits.") +
-              `<p>Use the activity and age controls above to narrow the timetable. Half-day programs finish at noon; full-day programs finish at 4 PM. Program session dates can be selected during enrollment.</p>${btn("Compare program options", "programs.html", "secondary")}`,
-          ) +
+          section(`<div class="schedule-fit"><span class="eyebrow">Make the schedule yours</span><h2>Find a rhythm that fits.</h2><p>Use the activity and age controls above to narrow the timetable. Half-day programs finish at noon; full-day programs finish at 4 PM. Program session dates can be selected during enrollment.</p>${btn("Compare program options", "programs.html")}</div>`) +
           section(
             head("A smoother camp day", "Your arrival-to-pickup guide.") +
               routine(),
@@ -1187,11 +1194,7 @@
               `<ol><li>Select a program, child, and session.</li><li>Review the exact weekly fee before confirming.</li><li>Mark your enrollment paid using a clearly labeled simulation.</li><li>Download a local demo PDF receipt.</li></ol><p class="demo-note">No real money changes hands in this payment simulation. Confirm cancellation and refund terms with your actual activity provider before booking.</p>`,
             true,
           ) +
-          section(
-            head("The practical details", "A few common questions.") +
-              contextualFaq() +
-              `<div class="actions mt-4">${btn("Explore available programs", "programs.html")}</div>`,
-          )
+          questionsSection("A little more clarity", "Simple fees. Clear answers.", "Understand what is included and plan the camp week that works for your family.", "Explore available programs", "programs.html")
         );
       case "blog":
         return (
@@ -1297,12 +1300,12 @@
               ? "Your summer starts here."
               : "Let’s find your way back.";
         const registering = page === "register";
-        return `<section class="access-layout"><aside class="access-story"><div class="access-story__top"><span class="eyebrow">${registering ? "A summer of possibility" : "Your family’s camp space"}</span><span class="access-edition">FAMILY ACCESS · ${registering ? "02" : "01"}</span></div><a class="brand" href="index.html"><img src="../assets/images/branding/mark.svg" alt="" width="36" height="36">campora.</a><h2>${registering ? "Their next adventure starts with you." : "Welcome back to their summer story."}</h2><p>${registering ? "Build a family profile, explore their interests, and plan a week of new friends and discoveries." : "Keep their activities, weekly schedule, and camp memories together in one welcoming place."}</p>${image("access/" + (registering ? "registration" : "login") + ".webp", registering ? "A parent and child meeting a camp mentor at a creative activity table" : "A parent greeting their child and counselor at summer camp", "access-story__image", true)}<div class="access-story__note"><i class="bi bi-sun" aria-hidden="true"></i> Small discoveries. A summer to remember.</div></aside><div class="access-form-panel"><span class="eyebrow">${registering ? "New family access" : page === "forgot-password" ? "Find your way back" : "Parent access"}</span><header class="access-form-heading"><h1>${registering ? "Create your account" : page === "forgot-password" ? "Reset your password" : "Sign in to Campora"}</h1><p>${registering ? "Set up your family profile and take the first step toward their next adventure." : page === "forgot-password" ? "Enter your email to view the recovery guidance for this local account." : "Welcome back. Let’s see what their next camp day has in store."}</p></header><form data-form="${page}" class="form-grid access-form ${registering ? "access-form--register" : ""}">${registering ? '<fieldset class="access-role"><legend>I am a</legend><label><input type="radio" name="relationship" value="parent" checked><span>Parent</span></label><label><input type="radio" name="relationship" value="guardian"><span>Guardian</span></label></fieldset>' : ""}${fields(page)}${page === "login" ? '<div class="access-login-options"><label><input type="checkbox" name="remember"> Remember this browser</label><a href="forgot-password.html">Forgot password?</a></div>' : ""}<button class="btn btn-navy access-submit">${registering ? "Create account" : page === "login" ? "Sign in" : "View recovery guidance"} <i class="bi bi-arrow-right" aria-hidden="true"></i></button><div role="status" class="form-feedback"></div></form>${page === "login" ? '<div class="access-demo"><span>Explore the local trial</span><div class="actions"><button class="btn btn-secondary btn-small" data-demo="parent">Try parent demo</button><button class="btn btn-secondary btn-small" data-demo="admin">Try admin demo</button></div></div>' : ""}<div class="access-switch">${registering ? 'Already have an account? <a href="login.html">Sign in <i class="bi bi-arrow-right" aria-hidden="true"></i></a>' : page === "login" ? 'New to Campora? <a href="register.html">Create an account <i class="bi bi-arrow-right" aria-hidden="true"></i></a>' : '<a href="login.html">Back to sign in</a>'}</div><p class="access-local-note"><i class="bi bi-info-circle" aria-hidden="true"></i> Local trial only. Account data stays in this browser; authentication and email delivery are not connected. Use a sample password.</p></div></section>`;
+        return `<section class="access-layout"><aside class="access-story"><div class="access-story__top"><span class="eyebrow">${registering ? "A summer of possibility" : "Your family’s camp space"}</span><span class="access-edition">FAMILY ACCESS · ${registering ? "02" : "01"}</span></div><a class="brand" href="index.html"><img src="../assets/images/branding/mark.svg" alt="" width="36" height="36">campora.</a><h2>${registering ? "Their next adventure starts with you." : "Welcome back to their summer story."}</h2><p>${registering ? "Build a family profile, explore their interests, and plan a week of new friends and discoveries." : "Keep their activities, weekly schedule, and camp memories together in one welcoming place."}</p>${image(page === "forgot-password" ? "editorial/auth-recovery.webp" : "access/" + (registering ? "registration" : "login") + ".webp", registering ? "A parent and child meeting a camp mentor at a creative activity table" : "A parent greeting their child and counselor at summer camp", "access-story__image", true)}<div class="access-story__note"><i class="bi bi-sun" aria-hidden="true"></i> Small discoveries. A summer to remember.</div></aside><div class="access-form-panel"><span class="eyebrow">${registering ? "New family access" : page === "forgot-password" ? "Find your way back" : "Parent access"}</span><header class="access-form-heading"><h1>${registering ? "Create your account" : page === "forgot-password" ? "Reset your password" : "Sign in to Campora"}</h1><p>${registering ? "Set up your family profile and take the first step toward their next adventure." : page === "forgot-password" ? "Enter your email to view the recovery guidance for this local account." : "Welcome back. Let’s see what their next camp day has in store."}</p></header><form data-form="${page}" class="form-grid access-form ${registering ? "access-form--register" : ""}">${registering ? '<fieldset class="access-role"><legend>I am a</legend><div class="access-role__options"><label><input type="radio" name="relationship" value="parent" checked><span>Parent</span></label><label><input type="radio" name="relationship" value="guardian"><span>Guardian</span></label></div></fieldset>' : ""}${fields(page)}${page === "login" ? '<div class="access-login-options"><label><input type="checkbox" name="remember"> Remember this browser</label><a href="forgot-password.html">Forgot password?</a></div>' : ""}<button class="btn btn-navy access-submit">${registering ? "Create account" : page === "login" ? "Sign in" : "View recovery guidance"} <i class="bi bi-arrow-right" aria-hidden="true"></i></button><div role="status" class="form-feedback"></div></form>${page === "login" ? `<div class="access-social"><div class="access-divider"><span>Or continue with</span></div><div class="access-social__buttons"><button type="button" class="btn btn-secondary" data-provider="Google"><i class="bi bi-google" aria-hidden="true"></i> Google</button><button type="button" class="btn btn-secondary" data-provider="Microsoft"><i class="bi bi-microsoft" aria-hidden="true"></i> Microsoft</button></div><p class="access-provider-note" id="provider-status" role="status">Google and Microsoft sign-in are not connected yet. You can use email and password.</p></div>` : ""}<div class="access-switch">${registering ? 'Already have an account? <a href="login.html">Sign in <i class="bi bi-arrow-right" aria-hidden="true"></i></a>' : page === "login" ? 'New to Campora? <a href="register.html">Create an account <i class="bi bi-arrow-right" aria-hidden="true"></i></a>' : '<a href="login.html">Back to sign in</a>'}</div><p class="access-local-note"><i class="bi bi-info-circle" aria-hidden="true"></i> Local trial only. Account data stays in this browser; authentication and email delivery are not connected. Use a sample password.</p></div></section>`;
       }
       case "404":
         return `<section class="center-page">${image("heroes/trail.webp", "A woodland trail leading back to camp", "utility-hero-image", true)}<span class="big-number">404</span><h1>A little off the beaten path.</h1><p>The page you’re looking for has wandered off. There’s still plenty of adventure ahead.</p><div class="actions">${btn("Back to home", "index.html")}${btn("Find a program", "programs.html", "secondary")}</div></section>`;
       case "coming-soon":
-        return `<section class="launch-page"><div class="launch-page__copy"><a class="brand launch-page__brand" href="${link("index.html")}" aria-label="Campora home"><img src="${link("assets/images/branding/mark.svg")}" alt="" width="36" height="36">campora.</a><span class="eyebrow">Something good is growing</span><h1>A new season of little adventures.</h1><p>More discoveries, new friendships, and days worth remembering. Count down to our next season, starting June 7, 2027.</p><div id="countdown" class="countdown launch-countdown" aria-label="Time until the next season"></div><form data-form="subscribe" class="launch-signup"><label for="launch-email">Be part of the next adventure</label><div class="launch-signup__row"><input id="launch-email" type="email" name="email" placeholder="Your email address" autocomplete="email" required><button class="btn btn-primary">Join the list <i class="bi bi-arrow-right" aria-hidden="true"></i></button></div><small>Registration of interest is saved in this browser only. No email is sent.</small><div role="status" class="form-feedback"></div></form><a class="launch-home" href="${link("index.html")}"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Campora</a></div><figure class="launch-page__visual">${image("heroes/trail.webp", "A sunny woodland path leading to a welcoming camp cabin", "launch-page__image", true)}<figcaption><span><i class="bi bi-sun" aria-hidden="true"></i> Summer starts with possibility.</span><strong>A little adventure.<br>A whole lot to look forward to.</strong></figcaption></figure></section>`;
+        return `<section class="launch-page"><div class="launch-page__copy"><a class="brand launch-page__brand" href="${link("index.html")}" aria-label="Campora home"><img src="${link("assets/images/branding/mark.svg")}" alt="" width="36" height="36">campora.</a><span class="eyebrow">Something good is growing</span><h1>A new season of little adventures.</h1><p>More discoveries, new friendships, and days worth remembering. Count down to our next season, starting June 7, 2027.</p><div id="countdown" class="countdown launch-countdown" aria-label="Time until the next season"></div><form data-form="subscribe" class="launch-signup"><label for="launch-email">Be part of the next adventure</label><div class="launch-signup__row"><input id="launch-email" type="email" name="email" placeholder="Your email address" autocomplete="email" required><button class="btn btn-primary">Join the list <i class="bi bi-arrow-right" aria-hidden="true"></i></button></div><small>Registration of interest is saved in this browser only. No email is sent.</small><div role="status" class="form-feedback"></div></form><a class="launch-home" href="${link("index.html")}"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Campora</a></div><figure class="launch-page__visual">${image("fresh/launch-path.webp", "A sunny woodland path leading to a welcoming camp cabin", "launch-page__image", true)}<figcaption><span><i class="bi bi-sun" aria-hidden="true"></i> Summer starts with possibility.</span><strong>A little adventure.<br>A whole lot to look forward to.</strong></figcaption></figure></section>`;
       default:
         return "";
     }

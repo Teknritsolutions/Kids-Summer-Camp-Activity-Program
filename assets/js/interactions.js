@@ -251,6 +251,11 @@
     }
   });
   document.addEventListener("click", async (e) => {
+    const provider = e.target.closest("[data-provider]");
+    if (provider) {
+      document.getElementById("provider-status").textContent = provider.dataset.provider + " sign-in is not connected yet. Please use email and password.";
+      return;
+    }
     const demo = e.target.closest("[data-demo]");
     if (demo) {
       sessionStorage.setItem("campora-role", demo.dataset.demo);
@@ -814,7 +819,8 @@
     document.getElementById("program-count").textContent =
       `${list.length} adventure${list.length === 1 ? "" : "s"} to discover · sample USD fees`;
     document.getElementById("program-results").innerHTML =
-      list.map((p) => C.programCard(p)).join("") ||
+      (list.map((p) => C.programCard(p)).join("") +
+        (document.body.dataset.page === "programs" && C.root === "./" && list.length === C.state.programs.length && !Object.values(d).some(Boolean) ? C.activityGuides() : "")) ||
       '<div class="empty-state"><h3>No adventures match just yet.</h3><p>Try another age group, activity, or budget. Reset filters to see every program.</p></div>';
     if (C.role === "parent")
       document

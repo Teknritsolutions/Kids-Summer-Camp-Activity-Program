@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-21T14:52:06.683Z",
-  "routes": 28,
-  "editorialImages": 58,
-  "links": 60,
+  "date": "2026-11-13T02:31:07.650Z",
+  "routes": 22,
+  "editorialImages": 89,
+  "links": 51,
   "duplicates": [],
   "broken": [],
   "badLinks": [],
@@ -87,30 +87,6 @@
     {
       "route": "program-details.html?id=nature",
       "title": "Wild Wonder Explorers | Campora"
-    },
-    {
-      "route": "blog-details.html?id=first-day",
-      "title": "Little steps to a wonderful first day | Campora"
-    },
-    {
-      "route": "blog-details.html?id=creative",
-      "title": "Make room for a little creative mess | Campora"
-    },
-    {
-      "route": "blog-details.html?id=outdoors",
-      "title": "The big lessons in small outdoor discoveries | Campora"
-    },
-    {
-      "route": "blog-details.html?id=water",
-      "title": "A thoughtful approach to water confidence | Campora"
-    },
-    {
-      "route": "blog-details.html?id=friendship",
-      "title": "Finding your people through play | Campora"
-    },
-    {
-      "route": "blog-details.html?id=summer",
-      "title": "A new season of possibilities | Campora"
     },
     {
       "route": "parent/programs.html",

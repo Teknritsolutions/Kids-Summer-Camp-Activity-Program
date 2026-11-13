@@ -284,22 +284,30 @@
   background: transparent;
 }
 .access-role {
-  grid-column: 1/-1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 6px;
-  border: 1px solid var(--border);
-  gap: 6px;
+  grid-column: 1 / -1;
+  display: block;
+  padding: 0;
+  border: 0;
   margin: 0;
   min-width: 0;
 }
 .access-role legend {
+  display: block;
+  float: none;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 0;
   font-size: 12px;
   font-weight: 700;
-  float: none;
-  width: auto;
-  margin: 0 0 8px;
-  padding: 0;
+  line-height: 1.5;
+}
+.access-role__options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 .access-role label {
   position: relative;
@@ -790,3 +798,14 @@
     font-size: 23px;
   }
 }
+
+/* Center account actions and provide clearly labeled provider options. */
+.access-form .access-submit { justify-content: center; position: relative; padding-inline: 50px; text-align: center; }
+.access-submit > .bi { position: absolute; inset-inline-end: 20px; }
+.access-social { margin-top: 24px; }
+.access-divider { display: flex; align-items: center; gap: 16px; color: var(--muted); font-size: 12px; margin-bottom: 18px; }
+.access-divider::before, .access-divider::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.access-social__buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.access-social__buttons .btn { width: 100%; min-width: 0; }
+.access-provider-note { color: var(--muted); font-size: 12px; line-height: 1.6; text-align: center; margin: 14px 0 0; }
+@media (max-width: 360px) { .access-social__buttons { grid-template-columns: 1fr; } }
