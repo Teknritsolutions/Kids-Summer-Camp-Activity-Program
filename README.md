@@ -18,7 +18,7 @@ Open `pages/login.html` and choose **Try parent demo** or **Try admin demo**. No
 
 ```text
 campora/
-├── index.html              # Entry redirect to pages/index.html
+├── index.html              # Home Page 1 entry point
 ├── pages/
 │   ├── index.html          # Home Page 1
 │   ├── home-2.html
@@ -38,7 +38,7 @@ campora/
 └── tests/
 ```
 
-All 36 application pages live inside `pages/`. The root `index.html` only redirects visitors to the homepage. Shared assets and documentation stay outside the page directory.
+All 36 application pages live inside `pages/`. The root `index.html` renders Home Page 1 directly and resolves shared assets through the pages directory. Shared assets and documentation stay outside the page directory.
 
 - 17 public and utility pages: two homepages, about, programs, dynamic program details, age groups, schedule, safety, pricing, blog, dynamic article details, contact, login, register, forgot password, 404, and coming soon.
 - 9 parent screens: overview, programs, children, enrollments, schedule, payments, receipts, notifications, settings.

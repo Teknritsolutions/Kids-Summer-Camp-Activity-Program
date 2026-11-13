@@ -99,9 +99,9 @@ function shell(page, title, description, prefix = "../") {
     <meta property="og:description" content="${description}">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#223451">
-    <link rel="icon" href="${prefix}assets/images/branding/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="${prefix}assets/images/branding/favicon-32.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="${prefix}assets/images/branding/apple-touch-icon.png">
+    <link rel="icon" href="${prefix}assets/images/branding/favicon.ico?v=3" sizes="16x16 32x32 48x48" type="image/x-icon">
+    <link rel="icon" href="${prefix}assets/images/branding/favicon-32.png?v=3" sizes="32x32">
+    <link rel="apple-touch-icon" href="${prefix}assets/images/branding/apple-touch-icon.png?v=3">
     <script src="${prefix}assets/js/theme.js"></script>
     <link rel="stylesheet" href="${prefix}assets/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="${prefix}assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
@@ -142,22 +142,8 @@ for (const [role, list] of [
         "../../",
       ),
     );
-const mark = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="38" cy="22" r="13" fill="#e9b85b"/><path d="M6 52 27 15l23 37H6Z" fill="#e87965"/><path d="m24 52 13-23 21 23H24Z" fill="#223451"/><path d="m20 38 7-12 7 12-7-4-7 4Z" fill="#fcfaf6"/></svg>`;
-fs.writeFileSync("assets/images/branding/mark.svg", mark);
-fs.writeFileSync("assets/images/branding/favicon.svg", mark);
-for (const [mode, color] of [
-  ["light", "#223451"],
-  ["dark", "#f6f7fb"],
-])
-  fs.writeFileSync(
-    `assets/images/branding/logo-${mode}.svg`,
-    `<svg xmlns="http://www.w3.org/2000/svg" width="240" height="64" viewBox="0 0 240 64">${mark.replace(/<svg[^>]*>|<\/svg>/g, "")}<text x="72" y="44" fill="${color}" font-family="Arial,sans-serif" font-size="35" font-weight="700" letter-spacing="-2">campora.</text></svg>`,
-  );
 console.log(
-  `Generated ${Object.keys(pages).length + parent.length + admin.length} HTML pages and SVG branding assets.`,
+  `Generated ${Object.keys(pages).length + parent.length + admin.length} HTML pages.`,
 );
 
-fs.writeFileSync(
-  "index.html",
-  '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1">\n    <meta http-equiv="refresh" content="0;url=pages/index.html">\n    <title>Campora</title>\n  </head>\n  <body><p><a href="pages/index.html">Open Campora</a></p></body>\n</html>\n',
-);
+fs.writeFileSync("index.html", fs.readFileSync("pages/index.html", "utf8").replace("<head>", '<head>\n    <base href="./pages/">'));

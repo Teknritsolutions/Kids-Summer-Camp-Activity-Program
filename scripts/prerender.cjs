@@ -76,3 +76,8 @@ for (const file of publicFiles) {
   fs.writeFileSync("pages/" + file, html);
 }
 console.log("Pre-rendered all public pages with fictional seed content.");
+
+if (publicFiles.includes("index.html")) {
+  const homepage = fs.readFileSync("pages/index.html", "utf8");
+  fs.writeFileSync("index.html", homepage.replace("<head>", '<head>\n    <base href="./pages/">'));
+}
